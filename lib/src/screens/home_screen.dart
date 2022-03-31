@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mounted) {
       bloc.initBloc(context);
       images.add(const Image(
-          fit: BoxFit.contain, image: AssetImage('assets/imgs/hm_blank.png')));
+          fit: BoxFit.contain, image: AssetImage('assets/imgs/hm_0.png')));
       images.add(const Image(
           fit: BoxFit.contain, image: AssetImage('assets/imgs/hm_1.png')));
       images.add(const Image(
