@@ -1,16 +1,31 @@
-# hangman
+# Hangman
 
-A new Flutter project.
+A flutter project of the game hangman
 
-## Getting Started
+## Dependencies
 
-This project is a starting point for a Flutter application.
+The project has the following dependencies:
 
-A few resources to get you started if this is your first Flutter project:
+``` yaml
+    rxdart: ^0.27.3
+    english_words: ^4.0.0
+    shared_preferences: ^2.0.13
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+rxdart: Extends the capabilities of Dart [Streams](https://api.dart.dev/stable/2.16.2/dart-async/Stream-class.html) and [StreamControllers](https://api.dart.dev/stable/2.16.2/dart-async/StreamController-class.html).
+english_words: A package containing the most ~5000 used English words.
+shared_preferences: Used to persist data (highscore)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Structure
+
+-The game is played by clicking on the floating action button in the bottom right corner.
+-This fetches a random word from english_words package.
+-The default number of guesses is 6. Lives remaining is depicted by asset images in the appropriate hangman shapes.
+
+## How to run
+
+Download the source code from the github repository.
+You will need to do a pub get.
+You may have to turn on developer options to get certain packages.
+
+
