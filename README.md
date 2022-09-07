@@ -2,12 +2,7 @@
 
 A flutter project of the game hangman
 ## Screenshots
-<img src="images\Screenshot_20220907-153942.jpg" alt="drawing" width="200"/>
-<img src="images\Screenshot_20220907-154621.jpg" alt="drawing" width="200"/>
-<img src="images\Screenshot_20220907-154633.jpg" alt="drawing" width="200"/>
-<img src="images\Screenshot_20220907-154650.jpg" alt="drawing" width="200"/>
-<img src="images\Screenshot_20220907-154741.jpg" alt="drawing" width="200"/>
-<img src="images\Screenshot_20220907-154818.jpg" alt="drawing" width="200"/>
+<img src="images\Screenshot_20220907-153942.jpg" alt="drawing" width="200"/> <img src="images\Screenshot_20220907-154621.jpg" alt="drawing" width="200"/> <img src="images\Screenshot_20220907-154633.jpg" alt="drawing" width="200"/> <img src="images\Screenshot_20220907-154650.jpg" alt="drawing" width="200"/> <img src="images\Screenshot_20220907-154741.jpg" alt="drawing" width="200"/> <img src="images\Screenshot_20220907-154818.jpg" alt="drawing" width="200"/>
 
 ## Dependencies
 
