@@ -63,7 +63,7 @@ class HomeBloc {
     correctLetters = [];
     incorrectLetters = [];
     var intValue = Random().nextInt(possibleWords.length);
-    word = possibleWords[intValue].codeUnits;
+    word = possibleWords[intValue].toLowerCase().codeUnits;
     letters = word.toSet().toList();
     lettersRemaining = letters.length;
     _guessStateSubject.sink.add(GuessState.ready);

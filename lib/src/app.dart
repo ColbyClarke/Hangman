@@ -9,7 +9,12 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Hangman',
       theme: ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
+              colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.teal,
+      ).copyWith(background: const Color.fromARGB(255, 241, 252, 243)))
+          .copyWith(
+        cardColor: const Color.fromARGB(255, 232, 252, 237),
+      ),
       onGenerateRoute: (settings) {
         if (settings.name == HomeScreen.routeName) {
           // final args = settings.arguments as Map;

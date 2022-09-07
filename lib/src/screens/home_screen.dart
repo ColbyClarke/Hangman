@@ -49,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Color.fromARGB(255, 241, 252, 243),
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
@@ -56,29 +57,39 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => showStats(), icon: const Icon(Icons.settings))
         ],
       ),
-      body: StreamBuilder<GameState>(
-        stream: bloc.gameState,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return loadingScreen();
-          }
-          switch (snapshot.data) {
-            case GameState.lost:
-              return lostScreen();
-            case GameState.won:
-              return wonScreen(false);
-            case GameState.highscore:
-              return wonScreen(true);
-            case GameState.playing:
-              return playingScreen();
-            default:
-              return loadingScreen();
-          }
-        },
+      body: Center(
+        child: Card(
+          margin: const EdgeInsets.all(16.0),
+          // color: Color.fromARGB(255, 232, 252, 237),
+          child: Container(
+            width: double.maxFinite,
+            padding: const EdgeInsets.all(8.0),
+            child: StreamBuilder<GameState>(
+              stream: bloc.gameState,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return loadingScreen();
+                }
+                switch (snapshot.data) {
+                  case GameState.lost:
+                    return lostScreen();
+                  case GameState.won:
+                    return wonScreen(false);
+                  case GameState.highscore:
+                    return wonScreen(true);
+                  case GameState.playing:
+                    return playingScreen();
+                  default:
+                    return loadingScreen();
+                }
+              },
+            ),
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => bloc.initialiseGame(),
-        child: const Icon(Icons.play_circle_outline),
+        child: const Icon(Icons.replay),
       ),
     );
   }
@@ -92,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text("HighScore: ${bloc.highScore} letters remaining"),
+                Text("HighScore: ${bloc.highScore} guess(es) remaining"),
               ],
             ),
           ),
@@ -156,7 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
           }).toList();
           List<Widget> guesses = bloc.incorrectLetters
               .map((e) => Text(String.fromCharCode(e),
-                  style: const TextStyle(fontSize: 40)))
+                  style:
+                      const TextStyle(fontSize: 40, color: Colors.redAccent)))
               .toList();
 
           return SingleChildScrollView(
@@ -183,7 +195,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 50,
                       padding: const EdgeInsets.only(right: 20),
                       child: TextField(
-                        onSubmitted: (value) => guess(value),
+                        onSubmitted: (value) =>
+                            (value.isNotEmpty) ? guess(value) : null,
                         controller: guessController,
                         maxLength: 1,
                       ),
@@ -227,49 +240,66 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget wonScreen(bool highscore) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-            child: Text(highscore ? "New high score!!!" : "Congratulations!!!!",
-                style: const TextStyle(fontSize: 40))),
-        const Center(
-          child: Text("Word was: ", style: TextStyle(fontSize: 40)),
-        ),
-        Center(
-          child: Text(String.fromCharCodes(bloc.word),
-              style: const TextStyle(fontSize: 40)),
-        ),
-        Center(
-          child: Text("Guesses remaining ${bloc.guessesRemaining}",
-              style: const TextStyle(fontSize: 40)),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+              child: Text(
+                  highscore ? "New high score!!!" : "Congratulations!!!!",
+                  style: const TextStyle(fontSize: 40))),
+          const Text("Word was: ",
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 40)),
+          Text(String.fromCharCodes(bloc.word),
+              textAlign: TextAlign.center,
+              style:
+                  const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+          const Text("Guesses remaining: ",
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 40)),
+          Text("${bloc.guessesRemaining}",
+              textAlign: TextAlign.center,
+              style:
+                  const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+        ],
+      ),
     );
   }
 
   Widget lostScreen() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Center(
-            child: Text("You lost :(", style: TextStyle(fontSize: 40))),
-        const Center(
-          child: Text("Word was: ", style: TextStyle(fontSize: 40)),
-        ),
-        Center(
-          child: Text(String.fromCharCodes(bloc.word),
-              style: const TextStyle(fontSize: 40)),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // const Center(
+          //     child: Text("You lost :(", style: TextStyle(fontSize: 40))),
+          // const Center(
+          //   child: Text("Word was: ", style: TextStyle(fontSize: 40)),
+          // ),
+          // Center(
+          //   child: Text(String.fromCharCodes(bloc.word),
+          //       style: const TextStyle(fontSize: 40)),
+          // ),
+          const Text("You lost :(",
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 40)),
+          const Text("Word was: ",
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 40)),
+          Text(String.fromCharCodes(bloc.word),
+              textAlign: TextAlign.center,
+              style:
+                  const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+        ],
+      ),
     );
   }
 
   Widget loadingScreen() {
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const Text("Welcome to hangman!"),
-      ElevatedButton(
-          onPressed: bloc.initialiseGame(), child: const Text("Click to play"))
-    ]);
+    return SingleChildScrollView(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        const Text("Welcome to hangman!"),
+        ElevatedButton(
+            onPressed: bloc.initialiseGame(),
+            child: const Text("Click to play"))
+      ]),
+    );
   }
 }
