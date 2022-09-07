@@ -1,15 +1,22 @@
 # Hangman
 
 A flutter project of the game hangman
+## Screenshots
+<img src="images\Screenshot_20220907-153942.jpg" alt="drawing" width="200"/>
+<img src="images\Screenshot_20220907-154621.jpg" alt="drawing" width="200"/>
+<img src="images\Screenshot_20220907-154633.jpg" alt="drawing" width="200"/>
+<img src="images\Screenshot_20220907-154650.jpg" alt="drawing" width="200"/>
+<img src="images\Screenshot_20220907-154741.jpg" alt="drawing" width="200"/>
+<img src="images\Screenshot_20220907-154818.jpg" alt="drawing" width="200"/>
 
 ## Dependencies
 
 The project has the following dependencies:
 
 ``` yaml
-    rxdart: ^0.27.3
-    english_words: ^4.0.0
-    shared_preferences: ^2.0.13
+    rxdart: 
+    english_words: 
+    shared_preferences: 
 ```
 
 - rxdart: Extends the capabilities of Dart [Streams](https://api.dart.dev/stable/2.16.2/dart-async/Stream-class.html) and [StreamControllers](https://api.dart.dev/stable/2.16.2/dart-async/StreamController-class.html).
@@ -25,7 +32,6 @@ The project has the following dependencies:
 ## How to run
 
 Download the source code from the github repository.
-You will need to do a pub get.
-You may have to turn on developer options to get certain packages.
+You will need to execute a **pub get** to get the required packages.
 
 
